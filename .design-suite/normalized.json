@@ -1,0 +1,62 @@
+{
+  "user_statement": "开发一个港式粤语学习网页，每天可以在上面打卡，培养港式粤语思维，了解地道香港历史文化，学习每个有特点的粤语词背后的故事，练习口语包括发音，每天打卡养成习惯；也考虑做成华为手机的APP（PWA 形式，添加到主屏幕以类 APP 使用）。",
+  "deliverable": "website",
+  "product_domain": "education",
+  "product_scope": "港式粤语学习网页：学习内容（思维/历史文化/词源故事/口语发音）+ 每日打卡工具，移动端优先，适配华为手机浏览器，可 PWA 安装",
+  "page_task": "editorial-content",
+  "audience": "general-user",
+  "primary_action": "每日打卡学习一个港式粤语词并练习口语发音",
+  "trust_strategy": "editorial-authority",
+  "media_strategy": "type-led",
+  "content_archetype": "learning-checkin",
+  "locale": "zh-Hant-HK",
+  "visual_direction": "neon-hong-kong",
+  "theme_mode": "dark",
+  "motion_level": "restrained",
+  "content_density": "medium",
+  "generated_media_mode": "auto",
+  "layout_selection": "user-specified-layout",
+  "delivery_format": "single-html",
+  "asset_policy": "inline-base64",
+  "responsive": {
+    "mobile_layout": "required"
+  },
+  "exclusions": [
+    "不涉及真实用户身份注册",
+    "不涉及服务器端数据",
+    "不复制任何品牌标志或字体"
+  ],
+  "unresolved": [
+    "用户未明确选择视觉风格，采用默认推荐（霓虹港风）并保留调整空间"
+  ],
+  "style_family": "neon-hong-kong-editorial",
+  "visual_style": "neon-hongkong-design-hypothesis",
+  "style_profile_id": null,
+  "design_target": "web",
+  "page_context": "website",
+  "domain_requirements": [
+    "language-learning",
+    "cantonese-dialect",
+    "hong-kong-culture",
+    "pronunciation-practice",
+    "daily-checkin"
+  ],
+  "navigation_mode": "same-document",
+  "network_dependencies": [],
+  "delivery_adapter": "static-export",
+  "export_mode": "single-file",
+  "protected_facts": [],
+  "normalization_provenance": {
+    "style_family": "classified-from-request",
+    "visual_style": "classified-from-request",
+    "style_profile_id": "classified-from-request",
+    "design_target": "classified-from-request",
+    "page_context": "classified-from-request",
+    "domain_requirements": "classified-from-request",
+    "navigation_mode": "classified-from-request",
+    "network_dependencies": "classified-from-request",
+    "delivery_adapter": "classified-from-request",
+    "export_mode": "classified-from-request",
+    "protected_facts": "classified-from-request"
+  }
+}

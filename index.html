@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070a1e">
+<meta name="description" content="港式粵語·每日一課 —— 每日打卡学词、练发音、讲地道广东话">
+<title>港式粵語 · 每日一課</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<!-- 夜景光斑 -->
+<div class="city-glow" aria-hidden="true"></div>
+
+<div class="app">
+  <!-- 顶部霓虹招牌 -->
+  <header class="marquee">
+    <div class="brand-mark" aria-hidden="true">粵</div>
+    <div>
+      <h1>港式粵語 · 每日一課</h1>
+      <div class="sub">CANTONESE DAILY · 香港地道廣東話</div>
+    </div>
+    <div class="date-chip" id="dateChip"></div>
+  </header>
+
+  <!-- ============ 今日 ============ -->
+  <section class="view active" id="view-home" aria-label="今日">
+    <!-- 打卡主卡 -->
+    <div class="checkin-hero">
+      <div class="checkin-ring" id="checkinRing">
+        <svg viewBox="0 0 84 84" aria-hidden="true">
+          <circle class="ring-bg" cx="42" cy="42" r="36" fill="none" stroke-width="7"></circle>
+          <circle class="ring-fg" id="ringFg" cx="42" cy="42" r="36" fill="none" stroke-width="7"
+                  stroke-dasharray="226.2" stroke-dashoffset="226.2"></circle>
+        </svg>
+        <div class="ring-core">
+          <div class="ring-num" id="ringNum">0</div>
+          <div class="ring-label">天</div>
+        </div>
+      </div>
+      <div class="checkin-copy">
+        <div class="hi" id="checkinHi">今日想學咩？</div>
+        <div class="stat">
+          <div class="stat-item"><span class="num" id="statTotal">0</span> <span class="lbl">累積</span></div>
+          <div class="stat-item"><span class="num" id="statStreak">0</span> <span class="lbl">連續</span></div>
+          <div class="stat-item"><span class="num" id="statMonth">0</span> <span class="lbl">本月</span></div>
+        </div>
+      </div>
+      <button class="btn-checkin" id="btnCheckin" type="button">打卡</button>
+    </div>
+    <div class="checked-banner" id="checkedBanner">✅ 今日已打卡，堅持落去！</div>
+
+    <!-- 今日课程 -->
+    <div class="section-title"><span class="bar"></span>今日詞條<button class="more" id="goTodayWord" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;">睇全部 →</button></div>
+    <div class="card word-card word-full" id="todayWordCard"></div>
+
+    <div class="section-title"><span class="bar"></span>今日思維 · 今日文化</div>
+    <div class="mini-card-grid">
+      <div class="mini-card cyan" id="goTodayThink">
+        <div class="t">🧠 今日思維</div>
+        <div class="d" id="todayThink"></div>
+        <div class="go">›</div>
+      </div>
+      <div class="mini-card purple" id="goTodayCulture">
+        <div class="t">🏛️ 今日文化</div>
+        <div class="d" id="todayCulture"></div>
+        <div class="go">›</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 學習 ============ -->
+  <section class="view" id="view-learn" aria-label="學習">
+    <div class="seg" role="tablist" aria-label="學習模塊">
+      <button role="tab" data-learn-tab="word" class="active">詞庫</button>
+      <button role="tab" data-learn-tab="pron">發音</button>
+      <button role="tab" data-learn-tab="think">思維</button>
+      <button role="tab" data-learn-tab="culture">文化</button>
+    </div>
+
+    <!-- 詞庫 -->
+    <div id="learn-word" class="learn-panel">
+      <div class="lesson-top">
+        <div class="section-title" style="margin:0"><span class="bar"></span>地道詞條</div>
+        <div class="lesson-nav">
+          <button id="wordPrev" aria-label="上一課">‹</button>
+          <span class="idx" id="wordIdx"></span>
+          <button id="wordNext" aria-label="下一課">›</button>
+        </div>
+      </div>
+      <div class="card word-card word-full" id="lessonWord"></div>
+    </div>
+
+    <!-- 發音 -->
+    <div id="learn-pron" class="learn-panel" hidden>
+      <div class="lesson-top">
+        <div class="section-title" style="margin:0"><span class="bar"></span>發音教室</div>
+        <div class="lesson-nav">
+          <button id="pronPrev" aria-label="上一節">‹</button>
+          <span class="idx" id="pronIdx"></span>
+          <button id="pronNext" aria-label="下一節">›</button>
+        </div>
+      </div>
+      <div class="card" id="lessonPron"></div>
+    </div>
+
+    <!-- 思維 -->
+    <div id="learn-think" class="learn-panel" hidden>
+      <div class="section-title"><span class="bar"></span>港式思維 <span class="more">學語言，先學腦</span></div>
+      <div id="thinkList"></div>
+    </div>
+
+    <!-- 文化 -->
+    <div id="learn-culture" class="learn-panel" hidden>
+      <div class="section-title"><span class="bar"></span>香港历史文化 <span class="more">地道 · 有根</span></div>
+      <div id="cultureList"></div>
+    </div>
+  </section>
+
+  <!-- ============ 打卡 ============ -->
+  <section class="view" id="view-checkin" aria-label="打卡">
+    <div class="section-title"><span class="bar"></span>打卡日曆</div>
+    <div class="card calendar-card">
+      <div class="cal-head">
+        <div class="month" id="calMonth"></div>
+        <div class="cal-nav">
+          <button id="calPrev" aria-label="上個月">‹</button>
+          <button id="calNext" aria-label="下個月">›</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-tile"><div class="n" id="calTotal">0</div><div class="l">累積打卡</div></div>
+      <div class="stat-tile cyan"><div class="n" id="calStreak">0</div><div class="l">連續天數</div></div>
+      <div class="stat-tile pink"><div class="n" id="calGoal">0</div><div class="l">本月目標</div></div>
+    </div>
+    <div class="streak-tip" id="streakTip"></div>
+  </section>
+
+  <!-- ============ 我的 ============ -->
+  <section class="view" id="view-mine" aria-label="我的">
+    <div class="card profile-card">
+      <div class="profile-ava" aria-hidden="true">🀄</div>
+      <div>
+        <div class="name">學粵人</div>
+        <div class="tag">每日一課 · 日日有功</div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>學習目標</div>
+    <div class="card">
+      <div class="goal-row">
+        <span class="lbl">每月目標</span>
+        <div class="chips" id="goalChips"></div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>偏好</div>
+    <div class="card">
+      <div class="setting-row">
+        <span>自动朗读词条</span>
+        <div class="sw on" id="swAutoSpeak" role="switch" aria-checked="true" tabindex="0"></div>
+      </div>
+      <div class="setting-row">
+        <span>顯示粵拼</span>
+        <div class="sw on" id="swShowJyut" role="switch" aria-checked="true" tabindex="0"></div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>數據</div>
+    <div class="card">
+      <div class="setting-row"><span>學習記錄</span><span style="color:var(--ink-faint);font-size:12px;font-variant-numeric:tabular-nums" id="dataInfo">—</span></div>
+      <div style="height:10px"></div>
+      <button class="btn-danger" id="btnReset" type="button">清空所有打卡記錄</button>
+      <div class="about-note">学习记录保存在本机浏览器（localStorage），不会上传任何数据。清除浏览器数据会同时清除打卡记录。</div>
+    </div>
+
+    <div class="about-note" style="margin-top:22px">
+      🏙️ 本頁為自學工具：詞源僅列通行說法，粵拼採用 Jyutping 拼音方案。<br>
+      霓虹港风致敬香港招牌文化。祝你「日日有課，課課有食」。
+    </div>
+  </section>
+</div>
+
+<!-- 底部 Tab -->
+<nav class="tabbar" aria-label="主導航">
+  <button class="tab-item active" data-view="home"><span class="ic">🏮</span>今日</button>
+  <button class="tab-item" data-view="learn"><span class="ic">📚</span>學習</button>
+  <button class="tab-item" data-view="checkin"><span class="ic">🗓️</span>打卡</button>
+  <button class="tab-item" data-view="mine"><span class="ic">🧑‍🎓</span>我的</button>
+</nav>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

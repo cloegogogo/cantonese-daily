@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "state": "compiled-route-contract",
+  "cache_key": "-:-:-:-:-:-:-",
+  "source_route": {
+    "path": ".design-suite/route.json",
+    "sha256": "15b01064e01b2fc1d7152fd764c7156b4e6131431d47cb49395f3d912fbb38c3",
+    "state": "route-ready"
+  },
+  "profile": {
+    "id": null,
+    "label": null,
+    "status": null,
+    "path": null,
+    "runtime_manifest": {
+      "path": null,
+      "sha256": null
+    },
+    "prompt": {
+      "variant_id": null,
+      "path": null,
+      "sha256": null
+    },
+    "visual_contract": {
+      "intent": null,
+      "visual_language": null,
+      "rules": [],
+      "page_context_adapter": null,
+      "identity_boundary": null
+    },
+    "selected_variant": null,
+    "quantitative": {
+      "id": null,
+      "label": null,
+      "selection": null,
+      "path": null,
+      "tokens": null,
+      "basis": null,
+      "selection_guidance": null
+    }
+  },
+  "page": {
+    "deliverable": "website",
+    "page_context": "website",
+    "design_target": "web",
+    "product_domain": "education",
+    "domain_overlay": "education-knowledge",
+    "domain_requirements": [
+      "学习目标",
+      "内容层级",
+      "难度和进度",
+      "作者、来源与继续学习路径"
+    ],
+    "product_scope": "港式粤语学习网页：学习内容（思维/历史文化/词源故事/口语发音）+ 每日打卡工具，移动端优先，适配华为手机浏览器，可 PWA 安装",
+    "page_task": "editorial-content",
+    "audience": "general-user",
+    "primary_action": "每日打卡学习一个港式粤语词并练习口语发音",
+    "trust_strategy": "editorial-authority",
+    "media_strategy": "type-led",
+    "motion_level": "restrained",
+    "content_density": "medium",
+    "locale": "zh-Hant-HK",
+    "theme_mode": "dark"
+  },
+  "domain": {
+    "id": "education-knowledge",
+    "requirements": [
+      "学习目标",
+      "内容层级",
+      "难度和进度",
+      "作者、来源与继续学习路径"
+    ]
+  },
+  "composition": {
+    "route": null,
+    "outline": [],
+    "loaded": false
+  },
+  "media": {
+    "mode": "auto",
+    "provider": "gpt-image-2",
+    "state": "enabled",
+    "trigger": "required-media-slot-without-suitable-supplied-asset",
+    "provenance": "generated-concept",
+    "supplied_assets": [],
+    "runtime_status": "not-requested"
+  },
+  "references": {
+    "catalog": null,
+    "trace": null
+  },
+  "downstream_capabilities": [],
+  "validation_plan": [
+    "visual",
+    "responsive",
+    "interaction",
+    "accessibility"
+  ],
+  "load_plan": {
+    "loaded": [
+      ".design-suite/route.json"
+    ],
+    "parallelizable": [
+      "visual-contract",
+      "domain-requirements",
+      "page-composition"
+    ],
+    "deferred": [
+      "DESIGN.md",
+      "evidence.json",
+      "references/research/*.json"
+    ]
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "state": "sector-contract-ready",
+  "sector": "general",
+  "delivery_adapter": "static-export",
+  "delivery_format": "single-html",
+  "export_mode": "single-file",
+  "asset_policy": "inline-base64",
+  "data_source": "static",
+  "network_dependencies": [],
+  "navigation_mode": "same-document",
+  "source_brief": {
+    "path": ".design-suite/source.json",
+    "preserved": true,
+    "unresolved": [
+      "用户未明确选择视觉风格，采用默认推荐（霓虹港风）并保留调整空间"
+    ]
+  },
+  "references": {
+    "catalog": null,
+    "selection": null,
+    "composition_mode": null,
+    "available_source_count": 0,
+    "min_sources_per_page": 0,
+    "max_sources_per_page": 0,
+    "selected_source_count": 0,
+    "source_ids": [],
+    "sources": [],
+    "mechanism_dimensions": [],
+    "usage_rule": "No reference catalog for general sector editorial-content; page structure follows page-patterns.md."
+  },
+  "deliverable": "website",
+  "page_context": "website",
+  "design_target": "web",
+  "page": {
+    "product_domain": "education",
+    "domain_overlay": "education-knowledge",
+    "domain_requirements": [
+      "学习目标",
+      "内容层级",
+      "难度和进度",
+      "作者、来源与继续学习路径"
+    ],
+    "style_family": "editorial-hypothesis",
+    "style_label": "霓虹港风（本项目一次性设计假设）",
+    "style_status": "planned",
+    "style_profile_id": null,
+    "product_scope": "not-applicable",
+    "page_task": "editorial-content",
+    "content_archetype": null,
+    "audience": "general-user",
+    "primary_action": "每日打卡学习一个港式粤语词并练习口语发音",
+    "trust_strategy": "editorial-authority",
+    "media_strategy": "type-led",
+    "motion_level": "restrained",
+    "content_density": "medium",
+    "locale": "zh-Hant-HK",
+    "composition_mode": null
+  },
+  "media": {
+    "generation_mode": "auto",
+    "media_required": false,
+    "provider": "gpt-image-2",
+    "supplied_assets": [],
+    "generated_assets": [],
+    "missing_assets": [],
+    "runtime_status": "not-needed"
+  },
+  "facts": {
+    "supplied": [],
+    "unresolved": [
+      "organization_name",
+      "services",
+      "locations",
+      "dates",
+      "pricing",
+      "contacts",
+      "customers",
+      "metrics",
+      "credentials",
+      "availability"
+    ],
+    "creative_additions": [
+      {
+        "field": "visual_direction",
+        "value": "neon-hong-kong",
+        "label": "concept decision"
+      },
+      {
+        "field": "theme_mode",
+        "value": "dark",
+        "label": "concept decision"
+      }
+    ]
+  },
+  "design": {
+    "thesis": "面向想学地道港式粤语的普通用户：以霓虹港风营造香港街头氛围，用短小可读的每日一课承载粤语思维、历史文化与词源故事，配合发音练习和每日打卡形成持续学习习惯。",
+    "composition": {
+      "catalog": null,
+      "mode": null,
+      "path": null,
+      "section_contract_loaded": false
+    },
+    "first_viewport": "页面标题「港式粤语每日一课」+ 今日日期 + 打卡按钮 + 今日学习卡片摘要，露出下一节内容",
+    "sections": [
+      {
+        "id": "hero",
+        "purpose": "识别产品并给出今天的主行动",
+        "proof": "今日课程主题",
+        "layout": "band",
+        "media": null,
+        "states": []
+      },
+      {
+        "id": "checkin",
+        "purpose": "每日打卡并查看连续天数",
+        "proof": "打卡状态与连续天数统计",
+        "layout": "band",
+        "media": null,
+        "states": ["checked", "unchecked"]
+      },
+      {
+        "id": "daily-word",
+        "purpose": "今日粤语词：释义、粤拼、发音、由来故事、地道例句",
+        "proof": "词源与文化注释",
+        "layout": "card",
+        "media": null,
+        "states": []
+      },
+      {
+        "id": "pronunciation",
+        "purpose": "口语练习：发音要点与跟读提示",
+        "proof": "粤拼与发音说明",
+        "layout": "card",
+        "media": null,
+        "states": []
+      },
+      {
+        "id": "culture",
+        "purpose": "地道香港历史文化背景",
+        "proof": "史实与文化注释（不虚构）",
+        "layout": "editorial",
+        "media": null,
+        "states": []
+      },
+      {
+        "id": "thinking",
+        "purpose": "培养港式粤语思维：语序、语气词、英文借词等思维差异",
+        "proof": "语言特征说明",
+        "layout": "editorial",
+        "media": null,
+        "states": []
+      },
+      {
+        "id": "archive",
+        "purpose": "历史课程与打卡记录回顾",
+        "proof": "本地存储的打卡与课程进度",
+        "layout": "grid",
+        "media": null,
+        "states": ["empty", "populated"]
+      },
+      {
+        "id": "footer",
+        "purpose": "来源说明与继续学习路径",
+        "proof": "内容范围说明",
+        "layout": "band",
+        "media": null,
+        "states": []
+      }
+    ],
+    "tokens": {
+      "brand": "#1a1a2e",
+      "accent": "#ff2e63",
+      "accent2": "#f9f871",
+      "accent3": "#21e6c1",
+      "surface": "#16213e",
+      "text": "#f5f5f5"
+    },
+    "avoid": [
+      "不复制任何真实香港品牌商标、字体或可识别页面构图",
+      "不用抽象口号卡替代学习内容",
+      "不虚构历史人物、事件或词源"
+    ]
+  },
+  "responsive": {
+    "mobile_layout": "required",
+    "viewport_matrix": ["320x568", "390x844", "768x1024", "1440x1000", "1920x1080", "2560x1080"],
+    "container_invariants": ["无页面级横向溢出", "主内容最大宽度 640px"],
+    "geometry_evidence": null
+  },
+  "accessibility": {
+    "target": "WCAG 2.1 AA 适用项",
+    "keyboard": "所有互动元素可 Tab 到达且可用",
+    "focus": "可见焦点环",
+    "reduced_motion": "尊重 prefers-reduced-motion，关闭霓虹闪烁动效"
+  },
+  "downstream_capabilities": []
+}
