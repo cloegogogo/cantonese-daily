@@ -207,26 +207,44 @@
     cachedVoice = found || null;
     return cachedVoice;
   }
-  function speak(text) {
-    if (!("speechSynthesis" in window)) {
-      toast("当前环境不支持语音朗读，请参照粤拼练习");
+  /* 播放本地预生成粤语音频（assets/audio/，百度 TTS 度晓芸广东话） */
+  var localAudio = null;
+  function playLocalAudio(url) {
+    try {
+      if (localAudio) { localAudio.pause(); }
+      localAudio = new Audio();
+      localAudio.preload = "auto";
+      localAudio.src = url;
+      localAudio.onerror = function () { toast("音频載入失敗，請檢查網絡"); };
+      var p = localAudio.play();
+      if (p && p.catch) p.catch(function () { toast("点击播放被拦截，請再點一次"); });
+    } catch (e) { toast("无法播放音频"); }
+  }
+  function speak(text, audioUrl) {
+    if (!text) return;
+    /* 1) 优先播放本地预生成的广东话音频（发音标准，不受系统语音包影响） */
+    if (audioUrl) { playLocalAudio(audioUrl); return; }
+    /* 2) 无本地音频时回退系统 Web Speech（HK 粤语 voice 优先） */
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "zh-HK";
+      u.rate = 0.85;
+      var v = getHkVoice();
+      if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
       return;
     }
-    if (!text) return;
-    window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(text);
-    u.lang = "zh-HK";
-    u.rate = 0.85;
-    var v = getHkVoice();
-    if (v) u.voice = v;
-    window.speechSynthesis.speak(u);
+    /* 3) 两者皆不可用 */
+    toast("当前环境不支持语音朗读，请参照粤拼练习");
   }
 
   /* ---------------- 渲染：词条卡 ---------------- */
   function wordCardHTML(w, opts) {
     opts = opts || {};
     var jyut = state.showJyut ? '<span class="word-jyut">' + esc(w.jyut) + "</span>" : "";
-    var speakBtn = '<button class="btn-speak" data-speak="' + esc(w.word) + '" type="button">🔊 讀俾你聽</button>';
+    var wordId = esc(w.id);
+    var speakBtn = '<button class="btn-speak" data-speak="' + esc(w.word) + '" data-audio="assets/audio/word-' + wordId + '.mp3" type="button">🔊 讀俾你聽</button>';
     var extra = "";
     if (opts.full) {
       extra =
@@ -249,6 +267,7 @@
       "</div>" +
       '<div class="word-meaning">' + esc(w.meaning) + "</div>" +
       '<div class="word-example"><span class="x">例句</span>' + esc(w.example) +
+      '<button class="btn-speak btn-example" data-speak="' + esc(w.example) + '" data-audio="assets/audio/example-' + wordId + '.mp3" type="button" aria-label="朗讀例句">🔊</button>' +
       '<span class="x">' + esc(w.exampleMeaning) + "</span></div>" +
       extra
     );
@@ -281,7 +300,9 @@
     }).join("");
     var audio = p.audio && p.audio.length
       ? '<div class="pron-audio">' + p.audio.map(function (a) {
-          return '<button class="btn-speak" data-speak="' + esc(a) + '" type="button">🔊 ' + esc(a) + "</button>";
+          var hex = "";
+          try { hex = a.codePointAt(0).toString(16); } catch (e) { hex = ""; }
+          return '<button class="btn-speak" data-speak="' + esc(a) + '" data-audio="assets/audio/char-' + hex + '.mp3" type="button">🔊 ' + esc(a) + "</button>";
         }).join("") + "</div>"
       : "";
     els.lessonPron.innerHTML =
@@ -492,7 +513,7 @@
       while (t && t !== document && !t.hasAttribute) t = t.parentNode;
       if (!t) return;
       if (t.hasAttribute && t.hasAttribute("data-speak")) {
-        speak(t.getAttribute("data-speak"));
+        speak(t.getAttribute("data-speak"), t.getAttribute("data-audio"));
       } else if (t.id === "goTodayWord") {
         switchView("learn");
         switchLearnTab("word");
@@ -569,7 +590,7 @@
     if (state.autoSpeak && !todayChecked() && "speechSynthesis" in window) {
       // 若用户未打卡，自动朗读今日词条一次（仅一次）
       setTimeout(function () {
-        if (!document.hidden) speak(todayWord.word);
+        if (!document.hidden) speak(todayWord.word, "assets/audio/word-" + todayWord.id + ".mp3");
       }, 600);
     }
   }

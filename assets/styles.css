@@ -215,6 +215,11 @@ body {
   box-shadow: 0 0 12px rgba(34, 230, 255, 0.15);
 }
 .btn-speak:active { transform: scale(0.94); }
+.btn-example {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; padding: 0; margin-left: 8px; vertical-align: middle;
+  font-size: 14px; border-radius: 50%;
+}
 .word-meaning { margin-top: 12px; font-size: 14px; color: var(--ink-dim); }
 .word-example {
   margin-top: 12px; padding: 12px; border-radius: var(--radius-sm);
