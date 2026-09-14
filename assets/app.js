@@ -134,7 +134,8 @@
   }
 
   /* ---------------- 今日课程索引 ---------------- */
-  var todayWord = lessonByDate(DATA.words);
+  /* 今日词条：优先从问候语轮换池取；词库无问候语时回退到完整词库 */
+  var todayWord = lessonByDate((DATA.greetings && DATA.greetings.length) ? DATA.greetings : DATA.words);
   var todayThink = lessonByDate(DATA.thinking);
   var todayCulture = lessonByDate(DATA.culture);
 

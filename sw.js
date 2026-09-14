@@ -2,7 +2,7 @@
  * 缓存策略：核心资源 install 时预缓存；运行期网络优先、失败回退缓存。
  * 用于支持添加到主屏幕后的离线使用（华为手机浏览器 / HTTPS 环境）。
  */
-const CACHE = "cantonese-daily-v1";
+const CACHE = "cantonese-daily-v2";
 const CORE = [
   "./",
   "./index.html",
